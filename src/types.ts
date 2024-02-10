@@ -83,11 +83,11 @@ export interface MediaQueries {
 
 export type MediaOrOperator = "or";
 export type MediaAndOperator = "and";
-export type MediaLinkOperator = MediaOrOperator | MediaAndOperator;
 export type MediaNotOperator = "not";
 export type MediaOnlyOperator = "only";
 export type MediaOperators =
-  | MediaLinkOperator
+  | MediaOrOperator
+  | MediaAndOperator
   | MediaNotOperator
   | MediaOnlyOperator;
 

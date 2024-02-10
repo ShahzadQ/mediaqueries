@@ -16,6 +16,10 @@
     "files": [
         "dist"
     ],
+    "scripts": {
+        "build": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
+        "prepublish": "pnpm build"
+    },
     "devDependencies": {
         "@vercel/ncc": "^0.38.1",
         "ts-xor": "^1.3.0",

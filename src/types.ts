@@ -50,11 +50,11 @@ export interface MediaQueries {
   minColorIndex: number;
   maxColorIndex: number;
   displayMode:
-    | "fullscreen"
-    | "standalone"
-    | "minimal-ui"
-    | "browser"
-    | "window-controls-overlay";
+  | "fullscreen"
+  | "standalone"
+  | "minimal-ui"
+  | "browser"
+  | "window-controls-overlay";
   dynamicRange: "standard" | "high";
   forcedColors: "none" | "active";
   grid: "0" | "1";

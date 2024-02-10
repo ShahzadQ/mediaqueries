@@ -1,0 +1,19 @@
+{
+    "name": "mq",
+    "version": "1.0.0",
+    "description": "Create CSS media queries from typesafe objects and helper functions.",
+    "keywords": [
+        "css",
+        "javascript",
+        "typescript",
+        "media-query",
+        "media"
+    ],
+    "author": "ShahzadQ",
+    "license": "MIT",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ]
+}

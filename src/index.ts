@@ -1,6 +1,7 @@
 import { defaultUnits } from "./constants";
 import type {
     MediaAndOperator,
+    MediaNotOperator,
     MediaOnlyOperator,
     MediaOperators,
     MediaOrOperator,
@@ -62,8 +63,6 @@ const determineValues = (queries: Queries) =>
             );
         });
 
-// what should a helper function look like
-type Helper = (...queries: QueriesArray) => string;
 // general function for helper functions
 const helperConstructor = (link: Link, ...queries: QueriesArray) =>
     addBrackets(
@@ -75,21 +74,22 @@ const helperConstructor = (link: Link, ...queries: QueriesArray) =>
         )
     );
 
+// what should a helper function look like
+type Helper = (...queries: QueriesArray) => string;
+
 // helper functions
 const and: Helper = (...queries) => helperConstructor("and", ...queries);
 const or: Helper = (...queries) => helperConstructor("or", ...queries);
-const not: Helper = (...queries) =>
-    addBrackets(`not ${helperConstructor("and", ...queries)}`);
 
 export const mq = (
     param:
         | ((
-            helpers: Record<Exclude<MediaOperators, MediaOnlyOperator>, Helper>
+            helpers: Record<Exclude<MediaOperators, MediaOnlyOperator | MediaNotOperator>, Helper> & Record<MediaNotOperator, (helper: Helper) => string>
         ) => string)
         | Queries
 ) =>
     typeof param === "function"
-        ? removeBrackets(param({ and, or, not }))
+        ? removeBrackets(param({ and, or, not: (helper) => helper() }))
         : joinWithLink(determineValues(param), "and");
 
 export * from "./types";

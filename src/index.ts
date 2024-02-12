@@ -47,7 +47,7 @@ const determineValues = (queries: Queries) =>
             // typescript not clever enough to deduce this
             value = value as Exclude<typeof value, boolean | MediaOnlyOperator>;
             // get a default unit if there is one
-            const unit = defaultUnits[key as keyof Queries];
+            const unit = defaultUnits[key as keyof MediaQueries];
             // convert our key to a css query
             const query = camelCaseToKebabCase(key);
             // conditional return a string with brackets

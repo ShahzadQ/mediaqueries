@@ -22,13 +22,14 @@ export type CSSRelativeLengthUnits =
   | 'dvh';
 export type CSSLengthUnits = CSSAbsoluteLengthUnits | CSSRelativeLengthUnits;
 
-type UnitInput = string | number;
-type ExpandableUnitInput = UnitInput | { value: number; units: CSSLengthUnits };
+export type CSSResolutionUnits = 'dpi' | 'dpcm' | 'dppx' | 'x';
+
+type UnitInput<U extends string> = string | number | { value: number; units: U };
 
 export interface MediaQueries {
-  width: ExpandableUnitInput;
-  minWidth: ExpandableUnitInput;
-  maxWidth: ExpandableUnitInput;
+  width: UnitInput<CSSLengthUnits>;
+  minWidth: UnitInput<CSSLengthUnits>;
+  maxWidth: UnitInput<CSSLengthUnits>;
   orientation: 'landscape' | 'portrait';
   anyHover: 'none' | 'hover';
   anyPointer: 'none' | 'coarse' | 'fine';
@@ -46,9 +47,9 @@ export interface MediaQueries {
   dynamicRange: 'standard' | 'high';
   forcedColors: 'none' | 'active';
   grid: '0' | '1';
-  height: ExpandableUnitInput;
-  minHeight: ExpandableUnitInput;
-  maxHeight: ExpandableUnitInput;
+  height: UnitInput<CSSLengthUnits>;
+  minHeight: UnitInput<CSSLengthUnits>;
+  maxHeight: UnitInput<CSSLengthUnits>;
   hover: 'none' | 'hover';
   invertedColors: 'none' | 'inverted';
   monochrome: number;
@@ -60,9 +61,9 @@ export interface MediaQueries {
   prefersColorScheme: 'light' | 'dark';
   prefersContrast: 'no-preference' | 'more' | 'less' | 'custom';
   prefersReducedMotion: 'no-preference' | 'reduce';
-  resolution: UnitInput;
-  minResolution: UnitInput;
-  maxResolution: UnitInput;
+  resolution: UnitInput<CSSResolutionUnits>;
+  minResolution: UnitInput<CSSResolutionUnits>;
+  maxResolution: UnitInput<CSSResolutionUnits>;
   scan: 'interlace' | 'progressive';
   scripting: 'none' | 'initial-only' | 'enabled';
   update: 'none' | 'slow' | 'fast';

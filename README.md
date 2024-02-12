@@ -30,9 +30,9 @@ const query = mq(({ and, or, not }) => and({ screen: 'only' }, or(and({ minWidth
 
 There are three helper functions: `and`, `or` and `not`.
 
-1. `and` - connects queries with an and operator (example: `and({ screen: 'only', minWidth: 100 })` generates `only screen and (min-width: 100px)`).
-2. `or` - connects queries with an or operator (example: `or({ width: 200 }, { width: 300 })` generates `(width: 200px) or (width: 300px)`).
-3. `not` - wraps queries with a not operator (example: `not({ minWidth: 100, maxWidth: 200 })` generates `not ((min-width: 100px) and (max-width: 200px))`). By default, connects queries with an `and` operator.
+1. `and` - connects queries with an `and` operator (example: `and({ screen: 'only', minWidth: 100 })` generates `only screen and (min-width: 100px)`).
+2. `or` - connects queries with an `or` operator (example: `or({ width: 200 }, { width: 300 })` generates `(width: 200px) or (width: 300px)`).
+3. `not` - wraps queries with a `not` operator (example: `not({ minWidth: 100, maxWidth: 200 })` generates `not ((min-width: 100px) and (max-width: 200px))`). By default, connects queries with an `and` operator.
 
 ### Comma's
 

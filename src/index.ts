@@ -66,16 +66,17 @@ type Helper = ReturnType<typeof helperConstructor>;
 
 export const mq = (
   param: ((helpers: Record<Exclude<MediaOperator, MediaOnlyOperator>, Helper>) => string) | Queries
-) =>
-  typeof param === 'function'
-    ? removeOuterBrackets(
-        param({
-          and: helperConstructor('and'),
-          or: helperConstructor('or'),
-          not: (...queries) => addBrackets(addNot(`${helperConstructor('and')(...queries)}`))
-        })
-      )
-    : joinWithLink(generateMediaFeatures(param), 'and');
+) => {
+  if (typeof param !== 'function') return joinWithLink(generateMediaFeatures(param), 'and');
+
+  return removeOuterBrackets(
+    param({
+      and: helperConstructor('and'),
+      or: helperConstructor('or'),
+      not: (...queries) => addBrackets(addNot(helperConstructor('and')(...queries)))
+    })
+  );
+};
 
 export * from './types';
 export * from './constants';

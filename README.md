@@ -1,6 +1,6 @@
 # mediaqueries
 
-**Typesafe CSS media query generation.** Generate simple or complex CSS media queries using JavaScript objects and helper functions. Inspired by [json2mq]("https://github.com/akiran/json2mq/").
+**Typesafe CSS media query generation.** Generate simple or complex CSS media queries using JavaScript objects and helper functions. Inspired by [json2mq]("https://github.com/akiran/json2mq").
 
 ## Install
 
@@ -40,7 +40,7 @@ In CSS media queries, commas are interpreted as `or` operators, so just use our 
 
 ### Media Type
 
-There are three media types for CSS media queries: `screen`, `print` and `all`. In a single query not seperated by an `or` operator, only one of these can be present. Therefore, I have restricted the number of media types you can pass to only one per object. You can easily get around this by using an `and` operator, but just don't (otherwise your stuff won't work).\
+There are three media types for CSS media queries: `screen`, `print` and `all`. In a single query not seperated by an `or` operator, only one of these can be present. Therefore, I have restricted the number of media types you can pass to only one per object. You can easily get around this by using an `and` operator, but just don't (otherwise your stuff won't work).
 
 #### How to add
 
@@ -80,4 +80,4 @@ For the `width` and `height` properties (and their `min` and `max` variants), yo
 
 ## Types
 
-All our object types are based on the media query specifications layed out on the [mdn docs]("https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries/"). You can access the various types and interfaces we use by importing them.
+All our object types are based on the media query specifications layed out on the [mdn docs]("https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries"). You can access the various types and interfaces we use by importing them.

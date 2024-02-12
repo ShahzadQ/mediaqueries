@@ -1,7 +1,6 @@
 import { defaultUnits } from './constants';
 import type {
   MediaAndOperator,
-  MediaNotOperator,
   MediaOnlyOperator,
   MediaOperators,
   MediaOrOperator,
@@ -63,22 +62,19 @@ const helperConstructor =
       )
     );
 
-// helper functions
-const and = helperConstructor('and');
-const or = helperConstructor('or');
-
 type Helper = ReturnType<typeof helperConstructor>;
 
 export const mq = (
-  param:
-    | ((
-        helpers: Record<Exclude<MediaOperators, MediaOnlyOperator | MediaNotOperator>, Helper> &
-          Record<MediaNotOperator, (helper: Helper) => string>
-      ) => string)
-    | Queries
+  param: ((helpers: Record<Exclude<MediaOperators, MediaOnlyOperator>, Helper>) => string) | Queries
 ) =>
   typeof param === 'function'
-    ? removeOuterBrackets(param({ and, or, not: helper => helper() }))
+    ? removeOuterBrackets(
+        param({
+          and: helperConstructor('and'),
+          or: helperConstructor('or'),
+          not: (...queries) => addBrackets(`not ${helperConstructor('and')(...queries)}`)
+        })
+      )
     : joinWithLink(generateMediaQueries(param), 'and');
 
 export * from './types';

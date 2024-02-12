@@ -11,7 +11,7 @@ import { addBrackets, addNot, camelCaseToKebabCase, removeOuterBrackets } from '
 
 // type of queries that can be passed to any helper function
 type Queries = (Partial<MediaQueries> & Partial<MediaTypes>) | string;
-type QueriesArray = Queries[];
+type QueriesArray = [Queries, ...Queries[]];
 
 // type of operators that can be used to link statements together
 type Link = MediaAndOperator | MediaOrOperator;

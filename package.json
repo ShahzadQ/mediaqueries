@@ -1,5 +1,5 @@
 {
-  "name": "mediaqueries",
+  "name": "ts-mq",
   "version": "1.0.0",
   "description": "Create CSS media queries from typesafe objects and helper functions.",
   "keywords": [
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "github",
-    "url": "https://github.com/ShahzadQ/mq"
+    "url": "https://github.com/ShahzadQ/ts-mq"
   },
   "license": "MIT",
   "author": "ShahzadQ",

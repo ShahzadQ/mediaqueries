@@ -8,6 +8,7 @@ import type {
     MediaQueries,
     MediaTypes,
 } from "./types";
+import {addBrackets, removeOuterBrackets, camelCaseToKebabCase} from "./utils"
 
 // type of queries that can be passed to any helper function
 type Queries = (Partial<MediaQueries> & Partial<MediaTypes>) | string;
@@ -19,15 +20,6 @@ type Link = MediaAndOperator | MediaOrOperator
 // join an array of strings with a link operator
 const joinWithLink = (arr: string[], link: Link) =>
     arr.join(` ${link} `);
-
-const addBrackets = (str: string) => `(${str})`;
-const removeBrackets = (str: string) => str.slice(1, -1);
-
-const camelCaseToKebabCase = (str: string) =>
-    str
-        .split(/(?=[A-Z])/)
-        .join("-")
-        .toLowerCase();
 
 // determine the values based on input queries - returns an array of strings
 const determineValues = (queries: Queries) =>
@@ -89,7 +81,7 @@ export const mq = (
         | Queries
 ) =>
     typeof param === "function"
-        ? removeBrackets(param({ and, or, not: (helper) => helper() }))
+        ? removeOuterBrackets(param({ and, or, not: (helper) => helper() }))
         : joinWithLink(determineValues(param), "and");
 
 export * from "./types";

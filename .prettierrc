@@ -1,25 +1,14 @@
 {
-    "$schema": "http://json.schemastore.org/prettierrc",
-    "plugins": [
-        "@ianvs/prettier-plugin-sort-imports",
-        "prettier-plugin-packagejson"
-    ],
-    "importOrder": [
-        "<THIRD_PARTY_MODULES>",
-        "",
-        "^[../]",
-        "^[./]"
-    ],
-    "importOrderParserPlugins": [
-        "typescript",
-        "decorators-legacy"
-    ],
-    "importOrderTypeScriptVersion": "4.4.0",
-    "semi": true,
-    "trailingComma": "none",
-    "singleQuote": true,
-    "jsxSingleQuote": true,
-    "printWidth": 120,
-    "tabWidth": 2,
-    "arrowParens": "avoid"
+  "$schema": "http://json.schemastore.org/prettierrc",
+  "plugins": ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-packagejson"],
+  "importOrder": ["<THIRD_PARTY_MODULES>", "", "^[../]", "^[./]"],
+  "importOrderParserPlugins": ["typescript", "decorators-legacy"],
+  "importOrderTypeScriptVersion": "4.4.0",
+  "semi": true,
+  "trailingComma": "none",
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "printWidth": 120,
+  "tabWidth": 2,
+  "arrowParens": "avoid"
 }

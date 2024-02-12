@@ -1,7 +1,13 @@
 {
-  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit", "source.fixAll.styleLint": "explicit" },
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": "always", "source.fixAll.styleLint": "always" },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

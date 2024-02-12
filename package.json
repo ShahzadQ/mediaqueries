@@ -1,42 +1,42 @@
 {
-    "name": "mq",
-    "version": "1.0.0",
-    "description": "Create CSS media queries from typesafe objects and helper functions.",
-    "keywords": [
-        "css",
-        "javascript",
-        "typescript",
-        "media-query",
-        "media"
-    ],
-    "author": "ShahzadQ",
-    "license": "MIT",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
-    "scripts": {
-        "build": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
-        "prepublish": "pnpm build"
-    },
-    "devDependencies": {
-        "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
-        "@types/eslint": "^8.56.2",
-        "@typescript-eslint/eslint-plugin": "^6.21.0",
-        "@typescript-eslint/parser": "^6.21.0",
-        "@vercel/ncc": "^0.38.1",
-        "eslint": "^8.56.0",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-import": "^2.29.1",
-        "eslint-plugin-prettier": "^5.1.3",
-        "prettier": "^3.2.5",
-        "prettier-plugin-packagejson": "^2.4.10",
-        "ts-xor": "^1.3.0",
-        "typescript": "^5.3.3"
-    },
-    "engines": {
-        "node": ">=v18.18.0"
-    },
-    "packageManager": "pnpm@8.8.0"
+  "name": "mq",
+  "version": "1.0.0",
+  "description": "Create CSS media queries from typesafe objects and helper functions.",
+  "keywords": [
+    "css",
+    "javascript",
+    "typescript",
+    "media-query",
+    "media"
+  ],
+  "license": "MIT",
+  "author": "ShahzadQ",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
+    "prepublish": "pnpm build"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/eslint": "^8.56.2",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vercel/ncc": "^0.38.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.5",
+    "prettier-plugin-packagejson": "^2.4.10",
+    "ts-xor": "^1.3.0",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "pnpm@8.8.0",
+  "engines": {
+    "node": ">=v18.18.0"
+  }
 }

@@ -1,88 +1,85 @@
-import { defaultUnits } from "./constants";
+import { defaultUnits } from './constants';
 import type {
-    MediaAndOperator,
-    MediaNotOperator,
-    MediaOnlyOperator,
-    MediaOperators,
-    MediaOrOperator,
-    MediaQueries,
-    MediaTypes,
-} from "./types";
-import {addBrackets, removeOuterBrackets, camelCaseToKebabCase} from "./utils"
+  MediaAndOperator,
+  MediaNotOperator,
+  MediaOnlyOperator,
+  MediaOperators,
+  MediaOrOperator,
+  MediaQueries,
+  MediaTypes
+} from './types';
+import { addBrackets, camelCaseToKebabCase, removeOuterBrackets } from './utils';
 
 // type of queries that can be passed to any helper function
 type Queries = (Partial<MediaQueries> & Partial<MediaTypes>) | string;
 type QueriesArray = Queries[];
 
 // type of operators that can be used to link statements together
-type Link = MediaAndOperator | MediaOrOperator
+type Link = MediaAndOperator | MediaOrOperator;
 
 // join an array of strings with a link operator
-const joinWithLink = (arr: string[], link: Link) =>
-    arr.join(` ${link} `);
+const joinWithLink = (arr: string[], link: Link) => arr.join(` ${link} `);
 
 // determine the values based on input queries - returns an array of strings
-const determineValues = (queries: Queries) =>
-    // if already a string just convert to a single item array and return
-    typeof queries === "string"
-        ? [queries]
-        : Object.keys(queries).map((key) => {
-            // map over keys and get value
-            let value = queries[key as keyof typeof queries];
-            // if no value return nothing
-            if (typeof value === "undefined") return "";
-            // if a type key, custom return without brackets
-            if (key === "all" || key === "screen" || key === "print")
-                return `${value === "only" ? `only ${key}` : value ? key : `not ${key}`
-                    }`;
+const generateMediaQueries = (queries: Queries) =>
+  // if already a string just convert to a single item array and return
+  typeof queries === 'string'
+    ? [queries]
+    : Object.keys(queries).map(key => {
+        // map over keys and get value
+        const value = queries[key as keyof typeof queries];
+        // if no value return nothing
+        if (typeof value === 'undefined') return '';
+        // if a type key, custom return without brackets
+        if (typeof value === 'boolean' || value === 'only')
+          return `${value === 'only' ? `only ${key}` : value ? key : `not ${key}`}`;
 
-            // typescript not clever enough to deduce this
-            value = value as Exclude<typeof value, boolean | MediaOnlyOperator>;
-            // get a default unit if there is one
-            const unit = defaultUnits[key as keyof MediaQueries];
-            // convert our key to a css query
-            const query = camelCaseToKebabCase(key);
-            // conditional return a string with brackets
-            return addBrackets(
-                `${query}: ${typeof value !== "string"
-                    ? typeof value !== "number"
-                        ? `${value.value}${value.units}`
-                        : typeof unit !== "undefined"
-                            ? `${value}${unit}`
-                            : value
-                    : value
-                }`
-            );
-        });
+        // get a default unit if there is one
+        const unit = defaultUnits[key as keyof MediaQueries];
+        // convert our key to a css query
+        const query = camelCaseToKebabCase(key);
+        // conditional return a string with brackets
+        return addBrackets(
+          `${query}: ${
+            typeof value !== 'string'
+              ? typeof value !== 'number'
+                ? `${value.value}${value.units}`
+                : typeof unit !== 'undefined'
+                  ? `${value}${unit}`
+                  : value
+              : value
+          }`
+        );
+      });
 
 // general function for helper functions
-const helperConstructor = (link: Link, ...queries: QueriesArray) =>
+const helperConstructor =
+  (link: Link) =>
+  (...queries: QueriesArray) =>
     addBrackets(
-        joinWithLink(
-            queries
-                .map((q) => determineValues(q), link)
-                .reduce((a, v) => [...a, ...v]),
-            link
-        )
+      joinWithLink(
+        queries.map(q => generateMediaQueries(q), link).reduce((a, v) => [...a, ...v]),
+        link
+      )
     );
 
-// what should a helper function look like
-type Helper = (...queries: QueriesArray) => string;
-
 // helper functions
-const and: Helper = (...queries) => helperConstructor("and", ...queries);
-const or: Helper = (...queries) => helperConstructor("or", ...queries);
+const and = helperConstructor('and');
+const or = helperConstructor('or');
+
+type Helper = ReturnType<typeof helperConstructor>;
 
 export const mq = (
-    param:
-        | ((
-            helpers: Record<Exclude<MediaOperators, MediaOnlyOperator | MediaNotOperator>, Helper> & Record<MediaNotOperator, (helper: Helper) => string>
-        ) => string)
-        | Queries
+  param:
+    | ((
+        helpers: Record<Exclude<MediaOperators, MediaOnlyOperator | MediaNotOperator>, Helper> &
+          Record<MediaNotOperator, (helper: Helper) => string>
+      ) => string)
+    | Queries
 ) =>
-    typeof param === "function"
-        ? removeOuterBrackets(param({ and, or, not: (helper) => helper() }))
-        : joinWithLink(determineValues(param), "and");
+  typeof param === 'function'
+    ? removeOuterBrackets(param({ and, or, not: helper => helper() }))
+    : joinWithLink(generateMediaQueries(param), 'and');
 
-export * from "./types";
-export * from "./constants";
+export * from './types';
+export * from './constants';

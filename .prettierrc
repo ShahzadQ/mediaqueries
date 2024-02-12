@@ -1,6 +1,8 @@
 {
+    "$schema": "http://json.schemastore.org/prettierrc",
     "plugins": [
-        "@ianvs/prettier-plugin-sort-imports"
+        "@ianvs/prettier-plugin-sort-imports",
+        "prettier-plugin-packagejson"
     ],
     "importOrder": [
         "<THIRD_PARTY_MODULES>",

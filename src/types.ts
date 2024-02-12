@@ -73,7 +73,7 @@ export type MediaOrOperator = 'or';
 export type MediaAndOperator = 'and';
 export type MediaNotOperator = 'not';
 export type MediaOnlyOperator = 'only';
-export type MediaOperators = MediaOrOperator | MediaAndOperator | MediaNotOperator | MediaOnlyOperator;
+export type MediaOperator = MediaOrOperator | MediaAndOperator | MediaNotOperator | MediaOnlyOperator;
 
 export type MediaType = 'screen' | 'print' | 'all';
 export type MediaTypeValue<T extends MediaType> = Record<T, MediaOnlyOperator | boolean>;

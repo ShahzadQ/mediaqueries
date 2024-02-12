@@ -2,12 +2,12 @@ import { defaultUnits } from './constants';
 import type {
   MediaAndOperator,
   MediaOnlyOperator,
-  MediaOperators,
+  MediaOperator,
   MediaOrOperator,
   MediaQueries,
   MediaTypes
 } from './types';
-import { addBrackets, camelCaseToKebabCase, removeOuterBrackets } from './utils';
+import { addBrackets, addNot, camelCaseToKebabCase, removeOuterBrackets } from './utils';
 
 // type of queries that can be passed to any helper function
 type Queries = (Partial<MediaQueries> & Partial<MediaTypes>) | string;
@@ -20,7 +20,7 @@ type Link = MediaAndOperator | MediaOrOperator;
 const joinWithLink = (arr: string[], link: Link) => arr.join(` ${link} `);
 
 // determine the values based on input queries - returns an array of strings
-const generateMediaQueries = (queries: Queries) =>
+const generateMediaFeatures = (queries: Queries) =>
   // if already a string just convert to a single item array and return
   typeof queries === 'string'
     ? [queries]
@@ -31,7 +31,7 @@ const generateMediaQueries = (queries: Queries) =>
         if (typeof value === 'undefined') return '';
         // if a type key, custom return without brackets
         if (typeof value === 'boolean' || value === 'only')
-          return `${value === 'only' ? `only ${key}` : value ? key : `not ${key}`}`;
+          return value === 'only' ? `only ${key}` : value ? key : addNot(key);
 
         // get a default unit if there is one
         const unit = defaultUnits[key as keyof MediaQueries];
@@ -57,7 +57,7 @@ const helperConstructor =
   (...queries: QueriesArray) =>
     addBrackets(
       joinWithLink(
-        queries.map(q => generateMediaQueries(q), link).reduce((a, v) => [...a, ...v]),
+        queries.map(q => generateMediaFeatures(q), link).reduce((a, v) => [...a, ...v]),
         link
       )
     );
@@ -65,17 +65,17 @@ const helperConstructor =
 type Helper = ReturnType<typeof helperConstructor>;
 
 export const mq = (
-  param: ((helpers: Record<Exclude<MediaOperators, MediaOnlyOperator>, Helper>) => string) | Queries
+  param: ((helpers: Record<Exclude<MediaOperator, MediaOnlyOperator>, Helper>) => string) | Queries
 ) =>
   typeof param === 'function'
     ? removeOuterBrackets(
         param({
           and: helperConstructor('and'),
           or: helperConstructor('or'),
-          not: (...queries) => addBrackets(`not ${helperConstructor('and')(...queries)}`)
+          not: (...queries) => addBrackets(addNot(`${helperConstructor('and')(...queries)}`))
         })
       )
-    : joinWithLink(generateMediaQueries(param), 'and');
+    : joinWithLink(generateMediaFeatures(param), 'and');
 
 export * from './types';
 export * from './constants';

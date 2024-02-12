@@ -5,13 +5,13 @@
 ## Install
 
 ```shell
-pnpm add mediaqueries
+pnpm add ts-mq
 ```
 
 ## Basic Usage
 
 ```
-import { mq } from 'mediaqueries';
+import { mq } from 'ts-mq';
 
 const query = mq({ screen: 'only', minWidth: 100, maxWidth: 200 })
 ```
@@ -23,7 +23,7 @@ This will generate a media query reading: `only screen and (min-width: 100px) an
 For more advanced queries, we need to destructure some helper functions.
 
 ```
-import { mq } from 'mediaqueries';
+import { mq } from 'ts-mq';
 
 const query = mq(({ and, or, not }) => and({ screen: 'only' }, or(and({ minWidth: 100, maxWidth: 200 }), and({ minWidth: 300, maxWidth: 400 }))))
 ```

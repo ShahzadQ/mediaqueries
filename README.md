@@ -72,11 +72,17 @@ The above example will generate `not screen`.
 
 ## Other Tools
 
+### Properties
+
 For the `width` and `height` properties (and their `min` and `max` variants), you can define their values in one of three ways:
 
 1. `number` - You can pass a number and by default `mq` will add some default units (for width and height these will be `px`).
 2. `string` - You can pass a string and we'll assume you've added your own units correctly so nothing will change.
 3. `{ value: number, units: string }` - For some properties you can access correct units by creating an object with a number value and some typesafe units.
+
+### Helper exports
+
+You can use the helper functions without destructuring from `mq` by importing them directly from `ts-mq`.
 
 ## Types
 

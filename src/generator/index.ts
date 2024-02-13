@@ -1,5 +1,4 @@
-import type { MediaOnlyOperator, MediaOperator } from '@/types';
-
+import type { MediaOnlyOperator, MediaOperator } from '../types';
 import { and, not, or } from './helpers';
 import type { Queries, QueriesArray } from './types';
 

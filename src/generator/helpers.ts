@@ -1,7 +1,6 @@
-import { defaultUnits } from '@/constants';
-import type { MediaAndOperator, MediaFeatures, MediaOrOperator, MediaType } from '@/types';
-import { addBrackets, addNot, arrayIncludes, camelCaseToKebabCase, generateFeature } from '@/utils';
-
+import { defaultUnits } from '../constants';
+import type { MediaAndOperator, MediaFeatures, MediaOrOperator, MediaType } from '../types';
+import { addBrackets, addNot, arrayIncludes, camelCaseToKebabCase, generateFeature } from '../utils';
 import { _mediaTypes } from './constants';
 import type { Queries, QueriesArray } from './types';
 

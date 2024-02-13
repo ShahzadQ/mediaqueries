@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "target": "ES2022",
     "module": "CommonJS",
     "moduleResolution": "node",
     "strict": true,
@@ -8,10 +8,7 @@
     "esModuleInterop": true,
     "skipLibCheck": false,
     "declaration": true,
-    "outDir": "dist",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "outDir": "dist"
   },
   "exclude": ["node_modules", "dist"]
 }

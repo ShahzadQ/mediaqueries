@@ -12,6 +12,10 @@ test('basic test with destructuring', () => {
   expect(mq(({ and }) => and({ type: 'only screen', minWidth: 100, maxWidth: 200 }))).toBe(expected.basic);
 });
 
+test('type property with array value', () => {
+  expect(mq({ type: ['all', 'print'] })).toBe('all, print');
+});
+
 test('basic test with destructuring and expanded number values', () => {
   expect(
     mq(({ and }) =>

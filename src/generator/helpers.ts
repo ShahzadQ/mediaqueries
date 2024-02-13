@@ -9,7 +9,8 @@ type LinkOperator = MediaAndOperator | MediaOrOperator;
 const _joinWithLinkOperator = (arr: string[], operator: LinkOperator) => arr.join(` ${operator} `);
 
 const _isMediaTypeString = (tbd: unknown): tbd is Extract<MediaTypes, string> =>
-  typeof tbd === 'string' && (tbd === 'screen' || tbd === 'print' || tbd === 'all' || tbd.startsWith('only'));
+  typeof tbd === 'string' &&
+  (tbd === 'screen' || tbd === 'print' || tbd === 'all' || tbd.startsWith('only') || tbd.startsWith('not'));
 
 const _generateMediaFeatures = (queries: Exclude<Queries, string>, keys = Object.keys(queries)) => {
   return keys
@@ -55,4 +56,4 @@ const _helperConstructor =
 
 export const and = _helperConstructor('and');
 export const or = _helperConstructor('or');
-export const not = (...queries: QueriesArray) => addNot(_helperConstructor('and')(...queries));
+export const not = (...queries: QueriesArray) => addNot(addBrackets(_helperConstructor('and')(...queries)));

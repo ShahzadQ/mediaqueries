@@ -11,5 +11,3 @@ export const mq = (
   if (typeof param !== 'function') return and(param);
   return param({ and, or, not });
 };
-
-export * from './helpers';

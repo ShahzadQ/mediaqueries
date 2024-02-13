@@ -22,9 +22,9 @@ export type CSSLengthUnits = CSSAbsoluteLengthUnits | CSSRelativeLengthUnits;
 
 export type CSSResolutionUnits = 'dpi' | 'dpcm' | 'dppx' | 'x';
 
-type UnitInput<U extends string> = string | number | { value: number; units: U };
+type UnitInput<U extends CSSResolutionUnits | CSSLengthUnits> = string | number | { value: number; units: U };
 
-export interface MediaQueries {
+export interface MediaFeatures {
   width: UnitInput<CSSLengthUnits>;
   minWidth: UnitInput<CSSLengthUnits>;
   maxWidth: UnitInput<CSSLengthUnits>;

@@ -1,5 +1,5 @@
 import { defaultUnits } from '@/constants';
-import type { MediaAndOperator, MediaOrOperator, MediaQueries, MediaType } from '@/types';
+import type { MediaAndOperator, MediaFeatures, MediaOrOperator, MediaType } from '@/types';
 import { addBrackets, addNot, arrayIncludes, camelCaseToKebabCase, generateFeature } from '@/utils';
 
 import { _mediaTypes } from './constants';
@@ -21,7 +21,7 @@ const _generateMediaFeatures = (queries: Exclude<Queries, string>, keys = Object
       else if (Array.isArray(value)) return value.join(', ');
       else if (_isMediaTypeString(value)) return value;
 
-      const units = defaultUnits[key as keyof MediaQueries];
+      const units = defaultUnits[key as keyof MediaFeatures];
       const query = camelCaseToKebabCase(key);
 
       return generateFeature(

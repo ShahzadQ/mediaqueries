@@ -1,4 +1,4 @@
-import type { MediaQueries, MediaType } from '../types';
+import type { MediaFeatures, MediaType } from '../types';
 
-export type Queries = Partial<MediaQueries & MediaType> | string;
+export type Queries = Partial<MediaFeatures & MediaType> | string;
 export type QueriesArray = [Queries, ...Queries[]];

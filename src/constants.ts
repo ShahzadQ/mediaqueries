@@ -1,6 +1,6 @@
-import type { MediaQueries } from '@/types';
+import type { MediaFeatures } from '@/types';
 
-export const defaultUnits: Readonly<Partial<Record<keyof MediaQueries, string>>> = {
+export const defaultUnits: Readonly<Partial<Record<keyof MediaFeatures, string>>> = {
   width: 'px',
   minWidth: 'px',
   maxWidth: 'px',

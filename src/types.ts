@@ -74,5 +74,9 @@ export type MediaNotOperator = 'not';
 export type MediaOnlyOperator = 'only';
 export type MediaOperator = MediaOrOperator | MediaAndOperator | MediaNotOperator | MediaOnlyOperator;
 
-export type MediaType = 'screen' | 'print' | 'all';
-export type MediaTypes = Record<'type', MediaType[] | MediaType | `only ${MediaType}` | `not ${MediaType}`>;
+export type MediaTypeBasicVariants = 'screen' | 'print' | 'all';
+export type MediaTypeExpandedVariants =
+  | MediaTypeBasicVariants
+  | `only ${MediaTypeBasicVariants}`
+  | `not ${MediaTypeBasicVariants}`;
+export type MediaType = Record<'type', MediaTypeBasicVariants[] | MediaTypeExpandedVariants>;

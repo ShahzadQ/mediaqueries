@@ -1,6 +1,6 @@
-import type { MediaTypes } from '@/types';
+import type { MediaTypeExpandedVariants } from '@/types';
 
-export const _mediaTypes: Extract<MediaTypes['type'], string>[] = [
+export const _mediaTypes: MediaTypeExpandedVariants[] = [
   'screen',
   'print',
   'all',

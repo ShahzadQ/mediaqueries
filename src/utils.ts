@@ -9,3 +9,5 @@ export const camelCaseToKebabCase = (str: string) =>
     .toLowerCase();
 
 export const generateFeature = (key: string, value: string) => addBrackets(`${key}: ${value}`);
+
+export const arrayIncludes = (arr: unknown[], tbd: unknown) => arr.includes(tbd);

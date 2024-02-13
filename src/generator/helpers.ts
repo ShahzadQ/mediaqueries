@@ -1,7 +1,8 @@
 import { defaultUnits } from '@/constants';
 import type { MediaAndOperator, MediaOrOperator, MediaQueries, MediaTypes } from '@/types';
-import { addBrackets, addNot, camelCaseToKebabCase, generateFeature } from '@/utils';
+import { addBrackets, addNot, arrayIncludes, camelCaseToKebabCase, generateFeature } from '@/utils';
 
+import { _mediaTypes } from './constants';
 import type { Queries, QueriesArray } from './types';
 
 type LinkOperator = MediaAndOperator | MediaOrOperator;
@@ -9,8 +10,7 @@ type LinkOperator = MediaAndOperator | MediaOrOperator;
 const _joinWithLinkOperator = (arr: string[], operator: LinkOperator) => arr.join(` ${operator} `);
 
 const _isMediaTypeString = (tbd: unknown): tbd is Extract<MediaTypes, string> =>
-  typeof tbd === 'string' &&
-  (tbd === 'screen' || tbd === 'print' || tbd === 'all' || tbd.startsWith('only') || tbd.startsWith('not'));
+  typeof tbd === 'string' && arrayIncludes(_mediaTypes, tbd);
 
 const _generateMediaFeatures = (queries: Exclude<Queries, string>, keys = Object.keys(queries)) => {
   return keys

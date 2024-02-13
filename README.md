@@ -11,7 +11,7 @@ pnpm add ts-mq
 ## Basic Usage
 
 ```
-import { mq } from 'ts-m1';
+import { mq } from 'ts-mq';
 
 const query = mq({ type:'only screen', maxWidth: 600 });
 ```
@@ -43,7 +43,14 @@ The three basic media types seperated by a comma. The example above will return 
 ### Width, Height and Resolution
 
 ```
-mq({ width: 100, minWidth: '100em', maxWidth: { value: 200, units: 'rem' } })
+mq({
+    width: 100,
+    minWidth: '100em',
+    maxWidth: {
+        value: 200,
+        units: 'rem'
+    }
+})
 ```
 
 The example above will generate `(width: 100px) and (min-width: 100em) and (max-width: 200rem)`.
@@ -63,7 +70,13 @@ const query = mq(({ and, or, not }) => ...)
 For more advanced cases, you can destructure three helper functions: `and`, `or` and `not`. These helpers can take an unrestricted number of arguments.
 
 ```
-mq(({ and, or }) => or(and({ minWidth: 100, maxWidth: 200 }), and({ minWidth: 300, maxWidth: 400 })))
+mq(
+    ({ and, or }) =>
+        or(
+            and({ minWidth: 100, maxWidth: 200 }),
+            and({ minWidth: 300, maxWidth: 400 })
+        )
+)
 ```
 
 `and`, `or` link features using the relavant operator (in CSS media queries a comma is equivalent to an or operator). The example above will generate `(((min-width: 100px) and (max-width: 200px)) or ((min-width: 300px) and (max-width: 400px)))`

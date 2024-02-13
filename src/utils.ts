@@ -1,5 +1,4 @@
 export const addBrackets = (str: string) => `(${str})`;
-export const removeOuterBrackets = (str: string) => str.slice(1, -1);
 
 export const addNot = (str: string) => `not ${str}`;
 
@@ -8,3 +7,5 @@ export const camelCaseToKebabCase = (str: string) =>
     .split(/(?=[A-Z])/)
     .join('-')
     .toLowerCase();
+
+export const generateFeature = (key: string, value: string) => addBrackets(`${key}: ${value}`);

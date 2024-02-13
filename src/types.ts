@@ -1,5 +1,3 @@
-import type { XOR } from 'ts-xor';
-
 export type CSSAbsoluteLengthUnits = 'cm' | 'mm' | 'Q' | 'in' | 'pc' | 'pt' | 'px';
 export type CSSRelativeLengthUnits =
   | 'em'
@@ -77,5 +75,4 @@ export type MediaOnlyOperator = 'only';
 export type MediaOperator = MediaOrOperator | MediaAndOperator | MediaNotOperator | MediaOnlyOperator;
 
 export type MediaType = 'screen' | 'print' | 'all';
-export type MediaTypeValue<T extends MediaType> = Record<T, MediaOnlyOperator | boolean>;
-export type MediaTypes = XOR<MediaTypeValue<'all'>, MediaTypeValue<'screen'>, MediaTypeValue<'print'>>;
+export type MediaTypes = Record<'type', MediaType[] | MediaType | `only ${MediaType}` | `not ${MediaType}`>;

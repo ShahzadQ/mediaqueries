@@ -1,4 +1,4 @@
-import type { MediaQueries } from './types';
+import type { MediaQueries } from '@/types';
 
 export const defaultUnits: Readonly<Partial<Record<keyof MediaQueries, string>>> = {
   width: 'px',

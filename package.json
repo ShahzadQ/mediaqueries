@@ -22,6 +22,8 @@
   ],
   "scripts": {
     "build": "tsup",
+    "format": "prettier --check \"**/*.{mjs,ts,md,json}\"",
+    "lint": "eslint .",
     "prepublish": "pnpm build",
     "test": "jest"
   },

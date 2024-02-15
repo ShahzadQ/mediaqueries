@@ -20,7 +20,7 @@ Pass an object into `mq` specifying the features you want to apply. This object 
 
 ### Type Property
 
-The `type` property refers to the media type you want to apply to a query. This property is described by the `MediaType` type (see [type definition](https://github.com/ShahzadQ/ts-mq/blob/main/src/types.ts)).
+The `type` property refers to the media type you want to apply to a query. This property is described by the `MediaType` type (see [type definition](https://github.com/shahzadq/ts-mq/blob/main/src/types.ts)).
 
 This property can take one of the following values:
 
@@ -58,7 +58,7 @@ The example above will generate `(width: 100px) and (min-width: 100em) and (max-
 The `width`, `height` and `resolution` properties (along with their `min` and `max` counterparts) can take one of three argument types.
 
 1. `string` - A string argument will be returned exactly as it's provided. `mq` will assume you've added a correct unit.
-2. `number` - A number argument will trigger `mq` to add a default unit to the end (see [constants](https://github.com/ShahzadQ/ts-mq/blob/main/src/constants.ts)).
+2. `number` - A number argument will trigger `mq` to add a default unit to the end (see [constants](https://github.com/shahzadq/ts-mq/blob/main/src/constants.ts)).
 3. `UnitInput` - A Unit Input is a custom object type which takes both a `value` and a `units` property. The `value` property requires a number, and the `units` property requires a typesafe unit.
 
 ## Helper Functions

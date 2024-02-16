@@ -1,6 +1,6 @@
 import type { MediaTypeExpandedVariants } from '../types';
 
-export const _mediaTypes: MediaTypeExpandedVariants[] = [
+export const mediaTypes: MediaTypeExpandedVariants[] = [
   'screen',
   'print',
   'all',

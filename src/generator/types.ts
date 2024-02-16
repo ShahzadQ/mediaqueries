@@ -1,4 +1,6 @@
-import type { MediaFeatures, MediaType } from '../types';
+import type { MediaAndOperator, MediaFeatures, MediaOrOperator, MediaType } from '../types';
 
-export type Queries = Partial<MediaFeatures & MediaType> | string;
-export type QueriesArray = [Queries, ...Queries[]];
+export type MediaQueries = Partial<MediaFeatures & Record<'type', MediaType>> | string;
+export type MediaQueriesArray = [MediaQueries, ...MediaQueries[]];
+
+export type MediaLinkOperator = MediaAndOperator | MediaOrOperator;

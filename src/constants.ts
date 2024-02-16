@@ -1,6 +1,6 @@
-import type { MediaFeatures } from './types';
+import type { CSSUnits, MediaFeatures } from './types';
 
-export const defaultUnits: Readonly<Partial<Record<keyof MediaFeatures, string>>> = {
+export const defaultUnits: Readonly<Partial<Record<keyof MediaFeatures, CSSUnits>>> = {
   width: 'px',
   minWidth: 'px',
   maxWidth: 'px',

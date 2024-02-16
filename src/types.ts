@@ -22,7 +22,9 @@ export type CSSLengthUnits = CSSAbsoluteLengthUnits | CSSRelativeLengthUnits;
 
 export type CSSResolutionUnits = 'dpi' | 'dpcm' | 'dppx' | 'x';
 
-type UnitInput<U extends CSSResolutionUnits | CSSLengthUnits> = string | number | { value: number; units: U };
+export type CSSUnits = CSSLengthUnits | CSSResolutionUnits;
+
+export type UnitInput<U extends CSSUnits> = string | number | { value: number; units: U };
 
 export interface MediaFeatures {
   width: UnitInput<CSSLengthUnits>;
@@ -79,4 +81,4 @@ export type MediaTypeExpandedVariants =
   | MediaTypeBasicVariants
   | `only ${MediaTypeBasicVariants}`
   | `not ${MediaTypeBasicVariants}`;
-export type MediaType = Record<'type', MediaTypeBasicVariants[] | MediaTypeExpandedVariants>;
+export type MediaType = MediaTypeBasicVariants[] | MediaTypeExpandedVariants;

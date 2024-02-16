@@ -1,5 +1,6 @@
 import type { MediaTypeExpandedVariants } from '../types';
 
+// array including all available media type expanded variants for comparisons
 export const mediaTypes: MediaTypeExpandedVariants[] = [
   'screen',
   'print',

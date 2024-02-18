@@ -11,9 +11,9 @@ const eventListener = (f: 'add' | 'remove') => (query: string | MediaQueryList, 
   if (typeof window !== 'undefined') {
     const mediaQuery = typeof query === 'string' ? window.matchMedia(query) : query;
 
-    mediaQuery[f === 'add' ? 'addEventListener' : 'removeEventListener']('change', () =>
-      callback(executeMediaQuery(mediaQuery), mediaQuery.media)
-    );
+    mediaQuery[f === 'add' ? 'addEventListener' : 'removeEventListener']('change', () => {
+      callback(executeMediaQuery(mediaQuery), mediaQuery.media);
+    });
   }
 };
 

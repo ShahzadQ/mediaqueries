@@ -132,4 +132,4 @@ Both `addChangeListener` and `removeChangeListener` require two arguments: the f
 
 #### `MediaQueryEventListener`
 
-`MediaQueryEventListener` is a type representing the callback type for `ts-mq`'s event listeners. This function has take two arguments: the first is a boolean value representing the executed query state, and the second the query as a string.
+[`MediaQueryEventListener`](https://github.com/shahzadq/ts-mq/blob/main/src/helpers.ts) is a type representing the callback type for `ts-mq`'s event listeners. This function has take two arguments: the first is a boolean value representing the executed query state, and the second the query as a string.

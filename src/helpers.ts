@@ -1,16 +1,15 @@
-export const executeMediaQuery = (query: string | MediaQueryList) =>
-  typeof query === 'string'
-    ? typeof window !== 'undefined'
-      ? window.matchMedia(query).matches
-      : false
-    : query.matches;
+type Query = string | MediaQueryList;
+
+const getMediaQuery = (query: Query) =>
+  typeof query === 'string' ? (typeof window !== 'undefined' ? window.matchMedia(query) : undefined) : query;
+
+export const executeMediaQuery = (query: Query) => getMediaQuery(query)?.matches ?? false;
 
 export type MediaQueryEventListener = (executed: boolean, query: string) => void;
 
-const eventListener = (f: 'add' | 'remove') => (query: string | MediaQueryList, callback: MediaQueryEventListener) => {
-  if (typeof window !== 'undefined') {
-    const mediaQuery = typeof query === 'string' ? window.matchMedia(query) : query;
-
+const eventListener = (f: 'add' | 'remove') => (query: Query, callback: MediaQueryEventListener) => {
+  const mediaQuery = getMediaQuery(query);
+  if (typeof mediaQuery !== 'undefined') {
     mediaQuery[f === 'add' ? 'addEventListener' : 'removeEventListener']('change', () => {
       callback(executeMediaQuery(mediaQuery), mediaQuery.media);
     });

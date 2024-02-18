@@ -7,10 +7,10 @@ export const executeMediaQuery = (query: Query) => getMediaQuery(query)?.matches
 
 export type MediaQueryEventListener = (executed: boolean, query: string) => void;
 
-const eventListener = (f: 'add' | 'remove') => (query: Query, callback: MediaQueryEventListener) => {
+const eventListener = (action: 'add' | 'remove') => (query: Query, callback: MediaQueryEventListener) => {
   const mediaQuery = getMediaQuery(query);
   if (typeof mediaQuery !== 'undefined') {
-    mediaQuery[f === 'add' ? 'addEventListener' : 'removeEventListener']('change', () => {
+    mediaQuery[action === 'add' ? 'addEventListener' : 'removeEventListener']('change', () => {
       callback(executeMediaQuery(mediaQuery), mediaQuery.media);
     });
   }

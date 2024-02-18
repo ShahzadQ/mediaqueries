@@ -1,6 +1,6 @@
 {
   "name": "ts-mq",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Generate CSS media queries from typesafe objects and helper functions.",
   "keywords": [
     "css",

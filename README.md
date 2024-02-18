@@ -85,7 +85,7 @@ mq(({ not }) => not({ minWidth: 100, maxWidth: 200 }));
 
 ### `executeMediaQuery`
 
-`ts-mq` also includes an `executeMediaQuery` function to test queries on the browser.
+`ts-mq` includes an `executeMediaQuery` function to test queries on the browser.
 
 ```ts
 import { executeMediaQuery, mq } from 'ts-mq';
@@ -97,13 +97,36 @@ const executed = executeMediaQuery(query);
 If the window object exists, `window.matchMedia` will run, otherwise a `false` is returned by default.
 
 ```ts
-import { executeMediaQuery, mq } from 'ts-mq';
+import { addChangeListener, executeMediaQuery, mq } from 'ts-mq';
 
 const query = mq({ type: 'only screen', minWidth: 100, maxWidth: 200 });
 const matchMedia = window.matchMedia(mq);
 const executed = executeMediaQuery(matchMedia);
+
 // you can now use the same object for event listeners
 matchMedia.addEventListener('change', () => {});
+// alternatively
+addChangeListener(matchMedia, () => {});
 ```
 
 Alternatively, you can provide a `window.matchMedia` return object as an argument to `executeMediaQuery`. This is more useful for using the same object for creating event listeners.
+
+### Event Listeners
+
+`ts-mq` also provides two basic event listeners to listen for changes in browser dimensions and re-test media queries.
+
+```ts
+import { addChangeListener, executeMediaQuery, mq, removeChangeListener } from 'ts-mq';
+
+const query = mq({ type: 'only screen', minWidth: 600 });
+
+const eventListener = () => {
+  const executed = executeMediaQuery(query);
+  console.log('query media match: ', executed);
+};
+
+addChangeListener(query, eventListener);
+removeChangeListener(query, eventListener);
+```
+
+Both `addChangeListener` and `removeChangeListener` require two arguments: the first a query to watch, the second a listener function which takes no arguments and returns no value. The query argument, like with `executeMediaQuery` can either be a query string to execute, or a `window.matchMedia` return object.

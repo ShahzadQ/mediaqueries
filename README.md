@@ -116,17 +116,20 @@ Alternatively, you can provide a `window.matchMedia` return object as an argumen
 `ts-mq` also provides two basic event listeners to listen for changes in browser dimensions and re-test media queries.
 
 ```ts
-import { addChangeListener, executeMediaQuery, mq, removeChangeListener } from 'ts-mq';
+import { addChangeListener, executeMediaQuery, MediaQueryEventListener, mq, removeChangeListener } from 'ts-mq';
 
 const query = mq({ type: 'only screen', minWidth: 600 });
 
-const eventListener = () => {
-  const executed = executeMediaQuery(query);
-  console.log('query media match: ', executed);
+const eventListener: MediaQueryEventListener = (executed, query) => {
+  console.log('query media match: ', query, executed);
 };
 
 addChangeListener(query, eventListener);
 removeChangeListener(query, eventListener);
 ```
 
-Both `addChangeListener` and `removeChangeListener` require two arguments: the first a query to watch, the second a listener function which takes no arguments and returns no value. The query argument, like with `executeMediaQuery` can either be a query string to execute, or a `window.matchMedia` return object.
+Both `addChangeListener` and `removeChangeListener` require two arguments: the first a query to watch, the second a listener function of the `MediaQueryEventListener` type and returns no value. The query argument, like with `executeMediaQuery` can either be a query string to execute, or a `window.matchMedia` return object.
+
+#### `MediaQueryEventListener`
+
+`MediaQueryEventListener` is a type representing the callback type for `ts-mq`'s event listeners. This function has take two arguments: the first is a boolean value representing the executed query state, and the second the query as a string.

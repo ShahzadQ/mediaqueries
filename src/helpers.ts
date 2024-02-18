@@ -5,11 +5,15 @@ export const executeMediaQuery = (query: string | MediaQueryList) =>
       : false
     : query.matches;
 
-const eventListener = (f: 'add' | 'remove') => (query: string | MediaQueryList, callback: () => void) => {
+export type MediaQueryEventListener = (executed: boolean, query: string) => void;
+
+const eventListener = (f: 'add' | 'remove') => (query: string | MediaQueryList, callback: MediaQueryEventListener) => {
   if (typeof window !== 'undefined') {
-    (typeof query === 'string' ? window.matchMedia(query) : query)[
-      f === 'add' ? 'addEventListener' : 'removeEventListener'
-    ]('change', callback);
+    const mediaQuery = typeof query === 'string' ? window.matchMedia(query) : query;
+
+    mediaQuery[f === 'add' ? 'addEventListener' : 'removeEventListener']('change', () =>
+      callback(executeMediaQuery(mediaQuery), mediaQuery.media)
+    );
   }
 };
 

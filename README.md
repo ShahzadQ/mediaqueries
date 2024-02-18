@@ -83,6 +83,8 @@ mq(({ not }) => not({ minWidth: 100, maxWidth: 200 }));
 
 ## Other Helpers
 
+### `executeMediaQuery`
+
 `ts-mq` also includes an `executeMediaQuery` function to test queries on the browser.
 
 ```ts
@@ -93,3 +95,15 @@ const executed = executeMediaQuery(query);
 ```
 
 If the window object exists, `window.matchMedia` will run, otherwise a `false` is returned by default.
+
+```ts
+import { executeMediaQuery, mq } from 'ts-mq';
+
+const query = mq({ type: 'only screen', minWidth: 100, maxWidth: 200 });
+const matchMedia = window.matchMedia(mq);
+const executed = executeMediaQuery(matchMedia);
+// you can now use the same object for event listeners
+matchMedia.addEventListener('change', () => {});
+```
+
+Alternatively, you can provide a `window.matchMedia` return object as an argument to `executeMediaQuery`. This is more useful for using the same object for creating event listeners.
